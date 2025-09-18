@@ -29,10 +29,9 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
   // Redes Sociales
-  let twitter = "";
-  if (variables.twitter) {
-    twitter = `<li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>`;
-  }
+  const twitter = variables.twitter
+    ? `<li><a href="https://twitter.com/${variables.twitter}">...</a></li>`
+    : "";
   // if the user has not provided a value for the social media, we don't show it
 
   let instagram = "";
