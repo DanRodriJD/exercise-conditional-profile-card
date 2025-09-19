@@ -29,51 +29,30 @@ function render(variables = {}) {
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
   // Redes Sociales
-  const twitter = variables.twitter
-    ? `<li><a href="https://twitter.com/${variables.twitter}">...</a></li>`
-    : "";
+
+  const twitter = variables.twitter ? `<li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>` : "";
+
   // if the user has not provided a value for the social media, we don't show it
+  const instagram = variables.instagram ? `<li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>` : "";
 
-  let instagram = "";
-  if (variables.instagram) {
-    instagram = `<li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>`;
-  }
+ const linkedin = variables.linkedin ? `<li><a href="https://linkedin.com/in/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>` : "";
 
-  let linkedin = "";
-  if (variables.linkedin) {
-    linkedin = `<li><a href="https://linkedin.com/in/${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>`;
-  }
-  let github = "";
-  if (variables.github) {
-    github = `<li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>`;
-  }
-  let fullName = "";
-  if (variables.name && variables.lastName) {
-    fullName = `${variables.name} ${variables.lastName}`;
-  } // if both name and lastName are provided, we concatenate them
-  else if (variables.name) {
-    fullName = variables.name;
-  } else if (variables.lastName) {
-    fullName = variables.lastName;
-  } else {
-    fullName = ""; // default name if none provided
-  }
-  let role = "";
-  if (variables.role) {
-    role = variables.role;
-  } else {
-    role = "Web Developer";
-  } // default role if none provided
-  let ubication = "";
-  if (variables.city && variables.country) {
-    ubication = `${variables.city} ${variables.country}`;
-  } else if (variables.city) {
-    ubication = variables.city;
-  } else if (variables.country) {
-    ubication = variables.country;
-  } else {
-    ubication = "Miami, USA"; // default location if none provided
-  }
+ const github = variables.github ? `<li><a href="https://github.com/${variables.github}"><i class="fab fa-github"></i></a></li>` : "";  
+ 
+let fullName = variables.name && variables.lastName ? `${variables.name} ${variables.lastName}`
+  : variables.name ? variables.name
+  : variables.lastName ? variables.lastName
+  : "";
+
+
+
+  let role = variables.role ? variables.role : "Web Developer";
+  // default role if none provided
+  let ubication = variables.city && variables.country
+  ? `${variables.city}, ${variables.country}`
+  : variables.city ? variables.city
+  : variables.country ? variables.country
+  : "Miami, USA";
 
   // finally we build the HTML with all the variables
   // we use template literals to make it easier to read and write
